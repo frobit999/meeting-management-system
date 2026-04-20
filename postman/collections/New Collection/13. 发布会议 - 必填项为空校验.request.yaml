@@ -1,0 +1,8 @@
+$kind: http-request
+name: 13. 发布会议 - 必填项为空校验
+url: http://localhost:8080/user/login
+method: POST
+body:
+  type: json
+  content: ""
+order: 2000

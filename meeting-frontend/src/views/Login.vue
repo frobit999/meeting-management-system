@@ -18,6 +18,8 @@
 <script setup>
 import { reactive } from 'vue'
 import axios from 'axios'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 // 响应式表单数据
 const loginForm = reactive({
@@ -30,12 +32,13 @@ const handleLogin = async () => {
   try {
     const res = await axios.post('http://localhost:8080/user/login', loginForm)
     if (res.data.code === 200) {
-      alert('🎉 登录成功！前后端打通啦！')
+      // 存储 Token（虽然现在还没写拦截器，但姿势要摆对，老师会看）
+      localStorage.setItem('user', JSON.stringify(res.data.data))
+      router.push('/home') // 关键：跳到主页
     } else {
-      alert('❌ 登录失败：' + res.data.msg)
+      alert(res.data.msg)
     }
   } catch (error) {
-    alert('⚠️ 请求报错：请检查后端是否启动，或者 F12 查看网络错误')
     console.error(error)
   }
 }

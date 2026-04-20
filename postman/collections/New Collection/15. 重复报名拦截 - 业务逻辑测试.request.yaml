@@ -1,0 +1,30 @@
+$kind: http-request
+name: 15. 重复报名拦截 - 业务逻辑测试
+url: http://localhost:8080/user/login
+method: POST
+body:
+  type: json
+  content: ""
+scripts:
+  - type: afterResponse
+    code: "// 检查状态码是否为 200\r
+
+      pm.test(\"接口响应正常\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      // 检查业务代码是否为 200\r
+
+      pm.test(\"业务逻辑正确\", function () {\r
+
+      \    var jsonData = pm.response.json();\r
+
+      \    pm.expect(jsonData.code).to.eql(200);\r
+
+      });"
+    language: text/javascript
+order: 3978171647092430

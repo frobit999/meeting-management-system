@@ -1,0 +1,24 @@
+$kind: http-request
+name: 01.用户登录 - 正向成功场景
+url: http://localhost:8080/user/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \  \"username\": \"admin\",\r
+
+    \  \"password\": \"75151423\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "// 只要后端给了响应（200），就算通过\r
+
+      pm.test(\"接口联调成功\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });"
+    language: text/javascript
+order: 14000

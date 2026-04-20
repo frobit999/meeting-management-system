@@ -5,7 +5,7 @@ import com.meeting.meetingbackend.entity.User;
 import com.meeting.meetingbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin
 @RestController // 声明这是一个 RESTful 控制器 [cite: 30, 60]
 @RequestMapping("/user") // 接口路径前缀
 public class UserController {
